@@ -1,5 +1,6 @@
 
 #include <stdint.h>
+#include "rprintf.h"
 
 #define MULTIBOOT2_HEADER_MAGIC         0xe85250d6
 
@@ -53,232 +54,90 @@ putc(int c){
 }
 
 
+
 	
 void main() {
     unsigned short *vram = (unsigned short*)0xb8000; // Base address of video mem
     const unsigned char color = 7; // gray text on black background
 
-	
-    putc('A');  
-    putc('\n');
-    putc('B');
-    putc('C');
-    putc('\n');
-putc('D');
-putc('E');
-putc('F');
-putc('\n');
-putc('\n');
-putc('\n');
-putc('\n');
-putc('\n');
-putc('\n');
-putc('\n');
-putc('\n');
-putc('\n');
-putc('\n');
-putc('\n');
+    esp_printf(putc, "Hello\n");
+    esp_printf(putc, "Igor");
+    esp_printf(putc, "\n");
+    esp_printf(putc, "Igor");
+    esp_printf(putc, "\n");
+   esp_printf(putc, "\n");
+esp_printf(putc, "\n");
+esp_printf(putc, "\n");
+esp_printf(putc, "\n");
+esp_printf(putc, "\n");
+esp_printf(putc, "\n");
+esp_printf(putc, "\n");
+esp_printf(putc, "\n");
+esp_printf(putc, "\n");
+esp_printf(putc, "\n");
+esp_printf(putc, "\n");
+esp_printf(putc, "\n");
+esp_printf(putc, "\n");
+esp_printf(putc, "\n");
+esp_printf(putc, "\n");
+esp_printf(putc, "\n");
+esp_printf(putc, "\n");
+
+esp_printf(putc, "\n");
+esp_printf(putc, "\n");
+esp_printf(putc, "\n");
+
+esp_printf(putc, "\n");
+esp_printf(putc, "\n");
+esp_printf(putc, "\n");
 
 
-putc('G');
-putc('\n');
+esp_printf(putc, "\n");
+esp_printf(putc, "\n");
+esp_printf(putc, "\n");
 
-putc('\n');
-putc('\n');
-putc('\n');
-putc('\n');
-putc('\n');
-putc('\n');
-putc('\n');
-putc('Z');
+esp_printf(putc, "\n");
+esp_printf(putc, "\n");
+esp_printf(putc, "\n");
 
-putc('\n');
-putc('\n');
-putc('\n');
-putc('N');
-putc('E');
-putc('I');
-putc('L');
-putc('\n');
-putc('A');
-putc('\n');
-putc('B');
-putc('\n');
-putc('\n');
-putc('A');
-putc('B');
-putc('C');
-putc('D');
-putc('A');
-putc('B');
-putc('C');
-putc('D');
-putc('A');
-putc('B');
-putc('C');
-putc('D');
-putc('A');
-putc('B');
-putc('C');
-putc('D');
-putc('A');
-putc('B');
-putc('C');
-putc('D');
-putc('A');
-putc('B');
-putc('C');
-putc('D');
-putc('A');
-putc('B');
-putc('C');
-putc('D');
-putc('A');
-putc('B');
-putc('C');
-putc('D');
-putc('A');
-putc('B');
-putc('C');
-putc('D');
-putc('A');
-putc('B');
-putc('C');
-putc('D');
-putc('A');
-putc('B');
-putc('C');
-putc('D');
-putc('A');
-putc('B');
-putc('C');
-putc('D');
-putc('A');
-putc('B');
-putc('C');
-putc('D');
-putc('A');
-putc('B');
-putc('C');
-putc('D');
-putc('A');
-putc('B');
-putc('C');
-putc('D');
-putc('A');
-putc('B');
-putc('C');
-putc('D');
-putc('A');
-putc('B');
-putc('C');
-putc('D');
-putc('A');
-putc('B');
-putc('C');
-putc('D');
-putc('A');
-putc('B');
-putc('C');
-putc('D');
-putc('A');
-putc('B');
-putc('C');
-putc('D');
-putc('Z');
-putc('Z');
-putc('I');
-putc('G');
-putc('O');
-putc('R');
+esp_printf(putc, "\n");
+esp_printf(putc, "\n");
+esp_printf(putc, "\n");
 
-putc('A');
-putc('B');
-putc('C');
-putc('D');
-putc('A');
-putc('B');
-putc('C');
-putc('D');
-putc('A');
-putc('B');
-putc('C');
-putc('D');
-putc('A');
-putc('B');
-putc('C');
-putc('D');
-putc('A');
-putc('B');
-putc('C');
-putc('D');
-putc('A');
-putc('B');
-putc('C');
-putc('D');
-putc('A');
-putc('B');
-putc('C');
-putc('D');
-putc('A');
-putc('B');
-putc('C');
-putc('D');
-putc('A');
-putc('B');
-putc('C');
-putc('D');
-putc('A');
-putc('B');
-putc('C');
-putc('D');
-putc('A');
-putc('B');
-putc('C');
-putc('D');
-putc('A');
-putc('B');
-putc('C');
-putc('D');
-putc('A');
-putc('B');
-putc('C');
-putc('D');
-putc('A');
-putc('B');
-putc('C');
-putc('D');
-putc('A');
-putc('B');
-putc('C');
-putc('D');
-putc('A');
-putc('B');
-putc('C');
-putc('D');
-putc('A');
-putc('B');
-putc('C');
-putc('D');
-putc('A');
-putc('B');
-putc('C');
-putc('D');
-putc('A');
-putc('B');
-putc('C');
-putc('D');
-putc('A');
-putc('B');
-putc('C');
-putc('D');
-putc('Z');
-putc('Z');
-putc('I');
-putc('G');
-putc('O');
-putc('R');
-putc('\n');
+
+esp_printf(putc, "\n");
+esp_printf(putc, "\n");
+esp_printf(putc, "\n");
+
+
+esp_printf(putc, "\n");
+esp_printf(putc, "\n");
+esp_printf(putc, "\n");
+
+
+esp_printf(putc, "\n");
+esp_printf(putc, "\n");
+esp_printf(putc, "\n");
+
+
+esp_printf(putc, "Hello World");
+esp_printf(putc, "\n");
+
+esp_printf(putc, "A");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
