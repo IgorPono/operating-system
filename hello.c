@@ -1,6 +1,10 @@
-
+#include <stddef.h>
 #include <stdint.h>
 #include "rprintf.h"
+#include "page.h"
+
+
+
 
 #define MULTIBOOT2_HEADER_MAGIC         0xe85250d6
 
@@ -112,7 +116,11 @@ void main() {
     const unsigned char color = 7; // gray text on black background
 
     esp_printf(putc, "Hello\n");
-
+    
+    init_pfa_list();
+    struct ppage* mem_space = allocate_physical_pages(5);
+    int size = sizeOfList(mem_space);
+    free_physical_pages(mem_space);
 
 
 

@@ -6,7 +6,8 @@ all: hello rootfs.img
 hello: hello.c
 	gcc -c -ffreestanding -mgeneral-regs-only -mno-mmx -m32 -march=i386 -fno-pie -fno-stack-protector -g3 -Wall hello.c 
 	gcc -c -ffreestanding -mgeneral-regs-only -mno-mmx -m32 -march=i386 -fno-pie -fno-stack-protector -g3 -Wall rprintf.c
-	ld -T kernel.ld  -e main -melf_i386  hello.o -o hello rprintf.o
+	gcc -c -ffreestanding -mgeneral-regs-only -mno-mmx -m32 -march=i386 -fno-pie -fno-stack-protector -g3 -Wall page.c 
+	ld -T kernel.ld  -e main -melf_i386  hello.o -o hello rprintf.o page.o
 
 
 rootfs.img:
