@@ -204,8 +204,8 @@ void main() {
 	struct ppage* pageList = allocate_physical_pages(2);
 	free_physical_pages(pageList);
 	
-	//void* va = 0x300000;
-        //man_pages(va, pageList, pd);	
+	void* va = 0x300000;
+        man_pages(va, pageList, pd);	
 
 
     while(1) {
