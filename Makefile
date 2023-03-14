@@ -21,8 +21,8 @@ rootfs.img:
 	mkfs.vfat --offset 2048 -F16 rootfs.img
 
 debug:
-	screen -S qemu -d -m qemu-system-i386 -S -s -hda rootfs.img
+	screen -S qemu -d -m qemu-system-i386 -S -s -hda rootfs.img -monitor stdio
 	TERM=xterm gdb -x gdb_os.txt && killall qemu-system-i386
 
 clean:
-	rm -f grub.img hello hello.o rootfs.img rprintf.o
+	rm -f grub.img hello hello.o rootfs.img rprintf.o page.o

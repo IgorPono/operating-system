@@ -1,4 +1,5 @@
 #include <stddef.h>
+#include <stdint.h>
 #include "page.h"
 
 struct ppage physical_page_array[128];//allocates memory in the kernel for the ppage structs. The ppage structs will contain an address that will point after end kernel 
@@ -24,6 +25,7 @@ void init_pfa_list(void){
 	//need pointer to end_kern
 	void *pagePointer = &_end_kernel; //physical address of the pages
 	pagePointer = (unsigned int)pagePointer & 0xFFFFF000;
+	pagePointer = pagePointer + 0x1000;
 	freeList = physical_page_array;
 	*(struct ppage *)freeList= (struct ppage){freeList + 1, NULL, pagePointer};
 	freeList++; //increments freeList by one size of struct ppage 
@@ -86,6 +88,47 @@ void free_physical_pages(struct ppage *ppage_list){ //returns allocated blocks b
 	curr -> next = freeList;
       	freeList -> prev = curr;
 	freeList = ppage_list;	
+}
+
+
+void* man_pages(void *vaddr, struct ppage *ppage_list, struct page_directory_entry* pd){
+	
+	struct ppage* curr = ppage_list;
+	while(curr != NULL){
+		unsigned int vpn = ((unsigned int)vaddr) >> 12;
+		//unsigned int pd_idx = (vpn >> 10);
+		unsigned int pt_idx = vpn & 0x3ff;
+
+		/*if(pd[pd_idx].present == 0){ //pulls a new page to hold the page table, identity map the page and creates page table
+		    struct ppage* temp = allocate_physical_pages(1);
+		    unsigned int temp_vpn = ((unsigned int)temp->physical_addr) >> 12;
+		    unsigned int temp_pd_idx = (temp_vpn >> 10);
+		    unsigned int temp_pt_idx = temp_vpn & 0x3ff; 
+
+		    pd[temp_pd_idx].frame = ((unsigned int)temp_vpn) >> 12;
+		    pd[temp_pd_idx].rw = 1;
+		    pd[temp_pd_idx].present = 1;
+		    
+		    struct page* temp_page_table = pd[temp_pd_idx].frame << 12;
+		    temp_page_table[pt_idx].frame = ((unsigned int)temp->physical_addr) << 12;
+		    temp_page_table[pt_idx].rw = 1;
+		    temp_page_table[pt_idx].present = 1;
+		
+
+		   // struct page page_table[1024] __attribute__((aligned(4096)));//needs to line up with physical addr of temp
+		   // temp->physical_addr
+
+		}*/
+		struct page* pageTable = pd[1].frame << 12;
+		pageTable[pt_idx].frame = ((unsigned int)curr->physical_addr) >> 12;
+		pageTable[pt_idx].rw = 1;
+		pageTable[pt_idx].present = 1;
+
+		curr = curr->next;
+		vaddr = vaddr + 0x1000;
+	}
+
+	return vaddr;
 }
 
 
